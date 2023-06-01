@@ -12,16 +12,14 @@ React Native GitHub Search is a mobile application that enables users to search 
 
 ## Screenshots
 <div align="center">
-  <img src="https://github.com/wanderfeys/GithubSearch/assets/35937442/ac2e5cd3-04c0-4530-a6a6-9682578767f5" alt="Screenshot 1" width="300" height="600">
-  <img src="https://github.com/wanderfeys/GithubSearch/assets/35937442/24df1ec3-8732-47c3-8f35-09027c982735" alt="Screenshot 2" width="300" height="600">
+  <img src="https://github.com/wanderfeys/GithubSearch/assets/35937442/f113f8d0-f050-4130-bd6d-339fd578fa79" alt="Screenshot 1" width="300" height="600">
+  <img src="https://github.com/wanderfeys/GithubSearch/assets/35937442/d1e402d4-8c43-45d3-be97-2c5b801dfb4c" alt="Screenshot 2" width="300" height="600">
 </div>
 
 <div align="center">
-  <img src="https://github.com/wanderfeys/GithubSearch/assets/35937442/8bd69811-2fa7-4b42-8039-a4cf2ff951b6" alt="Screenshot 3" width="300" height="600">
-  <img src="https://github.com/wanderfeys/GithubSearch/assets/35937442/1a68af30-8712-4dff-9127-33d9e3855d7f" alt="Screenshot 4" width="300" height="600">
-</div>
-
-
+  <img src="https://github.com/wanderfeys/GithubSearch/assets/35937442/6ecb2951-2250-4cfa-8e64-f32af6a1f8d7" alt="Screenshot 3" width="300" height="600">
+  <img src="https://github.com/wanderfeys/GithubSearch/assets/35937442/fa31c5fe-d76b-4fd3-ac2b-315fce34394a" alt="Screenshot 4" width="300" height="600">
+</div>!
 
 ## Installation
 
