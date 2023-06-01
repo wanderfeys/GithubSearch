@@ -1,10 +1,10 @@
 import React, {memo} from 'react';
 import {FlatList} from 'react-native';
-import {RootState} from '../store/store';
-import {Organization} from '../utils/types';
+import {RootState} from '../store/Store';
+import {Organization} from '../utils/Types';
 import OrganizationItem from './OrganizationItem';
 import {ContainerView, EmptyText} from './StyledComponents';
-import {useReduxSelector} from '../redux/hooks';
+import {useReduxSelector} from '../redux/Hooks';
 
 const OrganizationList = () => {
   const organizations = useReduxSelector(

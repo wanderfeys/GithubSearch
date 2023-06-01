@@ -1,10 +1,10 @@
 import React, {memo} from 'react';
 import {FlatList} from 'react-native';
 import RepositoryItem from './RepositoryItem';
-import {RootState} from '../store/store';
-import {Repository} from '../utils/types';
+import {RootState} from '../store/Store';
+import {Repository} from '../utils/Types';
 import {ContainerView, EmptyText} from './StyledComponents';
-import {useReduxSelector} from '../redux/hooks';
+import {useReduxSelector} from '../redux/Hooks';
 
 const RepositoryList = () => {
   const repositories = useReduxSelector(

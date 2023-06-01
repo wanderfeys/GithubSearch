@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {Organization, Repository, SearchState} from '../utils/types';
+import {Organization, Repository, SearchState} from '../utils/Types';
 
 const initialState: SearchState = {
   searchTerm: '',

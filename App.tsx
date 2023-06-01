@@ -3,8 +3,8 @@ import {StatusBar} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 import SearchScreen from './src/screens/SearchScreen';
-import store from './src/store/store';
-import {colors} from './src/utils/colors';
+import store from './src/store/Store';
+import {colors} from './src/utils/Colors';
 import {Provider as ReduxProvider} from 'react-redux';
 import {StyledSafeAreaView} from './src/components/StyledComponents';
 

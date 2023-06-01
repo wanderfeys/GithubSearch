@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Dimensions, FlatList} from 'react-native';
-import {colors} from '../utils/colors';
+import {colors} from '../utils/Colors';
 import {TabBar} from 'react-native-tab-view';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
