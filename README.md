@@ -23,8 +23,8 @@ React Native GitHub Search is a mobile application that enables users to search 
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your-username/react-native-github-search.git`
-2. Navigate to the project directory: `cd react-native-github-search`
+1. Clone the repository: `git clone https://github.com/wanderfeys/GithubSearch.git`
+2. Navigate to the project directory: `cd GithubSearch`
 3. Install the project dependencies: `npm install` or `yarn install`
 4. For ios make sure you install pods: cd ios && pod install
 
