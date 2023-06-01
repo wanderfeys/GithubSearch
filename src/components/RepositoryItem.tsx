@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
 import {View, TouchableOpacity, Linking} from 'react-native';
-import {Repository} from '../types/Types';
+import {Repository} from '../utils/Types';
 import {
   Avatar,
   StarContainer,

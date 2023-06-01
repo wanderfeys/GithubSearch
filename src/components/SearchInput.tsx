@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {setSearchTerm, searchGithub, addToHistory} from '../redux/SearchSlice';
-import {AppAction, AppState} from '../types/Types';
+import {AppAction, AppState} from '../utils/Types';
 import {Input, SearchHistoryView} from './StyledComponents';
 import {debounce} from 'lodash';
 import {ThunkDispatch} from 'redux-thunk';

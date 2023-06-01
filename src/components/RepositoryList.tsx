@@ -3,7 +3,8 @@ import {FlatList} from 'react-native';
 import RepositoryItem from './RepositoryItem';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/Store';
-import {Repository} from '../types/Types';
+import {Repository} from '../utils/Types';
+import {ContainerView, EmptyText} from './StyledComponents';
 
 const RepositoryList = () => {
   const repositories = useSelector(
@@ -21,6 +22,11 @@ const RepositoryList = () => {
       data={repositories}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
+      ListEmptyComponent={
+        <ContainerView>
+          <EmptyText>No repositories found</EmptyText>
+        </ContainerView>
+      }
     />
   );
 };

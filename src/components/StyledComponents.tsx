@@ -1,49 +1,50 @@
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Dimensions, FlatList} from 'react-native';
+import {colors} from '../utils/Colors';
+import {TabBar} from 'react-native-tab-view';
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
 export const AppContainer = styled.View`
-  background-color: #0d1117;
+  background-color: ${colors.background};
   height: ${height}px;
   width: ${width}px;
   padding: 5px;
-  padding-top: 20px;
 `;
 
 export const Input = styled.TextInput`
   height: 40px;
-  border: 2px solid #30363d;
+  border: 2px solid ${colors.border};
   padding: 10px;
   border-radius: 15px;
-  color: white;
+  color: ${colors.white};
 `;
 
 export const SectionHeader = styled.Text`
   font-weight: bold;
   font-size: 20px;
-  color: #e6edf3;
+  color: ${colors.textPrimary};
   padding-bottom: 10px;
 `;
 
 export const TextListItem = styled.Text`
   font-size: 16px;
-  color: white;
+  color: ${colors.white};
   padding-bottom: 10px;
 `;
 
 export const DescriptionText = styled.Text`
   font-size: 16px;
-  color: white;
+  color: ${colors.white};
   padding-bottom: 10px;
   width: ${width - 120}px;
 `;
 
 export const TitleListItem = styled.Text`
   font-size: 16px;
-  color: #2f81f7;
+  color: ${colors.textTitle};
   padding-bottom: 10px;
   width: ${width - 120}px;
 `;
@@ -68,13 +69,13 @@ export const StarIcon = styled(Icon)`
 
 export const StarCount = styled.Text`
   font-size: 12px;
-  color: white;
+  color: ${colors.white};
 `;
 
 export const ListItem = styled.View`
   margin-bottom: 10px;
   padding: 10px;
-  border: 1px solid #30363d;
+  border: 1px solid ${colors.border};
   border-radius: 5px;
   flex-direction: row;
   align-items: center;
@@ -85,9 +86,10 @@ export const InputContainer = styled.View`
   z-index: 1;
   height: 10%;
 `;
+
 export const SectionView = styled.View`
   padding-horizontal: 15px;
-  height: 45%;
+  height: ${height}px;
 `;
 
 export const ContainerView = styled.View`
@@ -101,6 +103,7 @@ export const Avatar = styled.Image`
   border-radius: 25px;
   margin-right: 10px;
 `;
+
 export const SectionSpacing = styled.View`
   height: 10px;
 `;
@@ -121,21 +124,28 @@ export const StyledFlatList = styled.FlatList`
 ` as unknown as typeof FlatList;
 
 export const SearchTermContainer = styled.View`
-  background-color: #161b22;
+  background-color: ${colors.listItemBackground};
   border-bottom-width: 1px;
-  border-bottom-color: #30363d;
+  border-bottom-color: ${colors.border};
   padding-vertical: 10px;
   padding-horizontal: 16px;
 `;
 
 export const SearchTermText = styled.Text`
   font-size: 16px;
-  color: white;
+  color: ${colors.white};
 `;
 
 export const EmptyText = styled.Text`
   font-size: 16px;
-  color: #666;
+  color: ${colors.listItemEmptyText};
   align-self: center;
   margin-top: 20px;
+`;
+
+export const StyledTabBar = styled(TabBar)`
+  background-color: ${colors.background};
+  elevation: 0;
+  shadow-opacity: 0;
+  border-radius: 0;
 `;

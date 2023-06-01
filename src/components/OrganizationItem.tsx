@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, Linking} from 'react-native';
-import {Organization} from '../types/Types';
+import {Organization} from '../utils/Types';
 import {Avatar, ListItem, TextListItem} from './StyledComponents';
 
 interface OrganizationItemProps {

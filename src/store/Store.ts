@@ -1,4 +1,3 @@
-// store.ts
 import {configureStore} from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 import searchReducer, {addToHistory} from '../redux/SearchSlice';
