@@ -1,17 +1,22 @@
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Dimensions, FlatList} from 'react-native';
-import {colors} from '../utils/Colors';
+import {colors} from '../utils/colors';
 import {TabBar} from 'react-native-tab-view';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
+export const StyledSafeAreaView = styled(SafeAreaView)`
+  flex: 1;
+`;
+
 export const AppContainer = styled.View`
+  flex: 1;
   background-color: ${colors.background};
   height: ${height}px;
   width: ${width}px;
-  padding: 5px;
 `;
 
 export const Input = styled.TextInput`
@@ -59,6 +64,7 @@ export const ListItemTitle = styled(TitleListItem)``;
 
 export const StarContainer = styled.View`
   flex-direction: row;
+  align-items: center;
   padding-horizontal: 2px;
   padding-top: 5px;
 `;
@@ -68,7 +74,7 @@ export const StarIcon = styled(Icon)`
 `;
 
 export const StarCount = styled.Text`
-  font-size: 12px;
+  font-size: 14px;
   color: ${colors.white};
 `;
 

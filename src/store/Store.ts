@@ -1,10 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
-import searchReducer, {addToHistory} from '../redux/SearchSlice';
+import searchReducer, {addToHistory} from '../redux/searchSlice';
 import {
   loadSearchHistory,
   saveSearchHistory,
-} from '../redux/SearchHistoryPersistence';
+} from '../redux/searchHistoryPersistence';
 
 const store = configureStore({
   reducer: {

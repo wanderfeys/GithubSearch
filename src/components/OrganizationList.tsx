@@ -1,18 +1,24 @@
 import React, {memo} from 'react';
 import {FlatList} from 'react-native';
-import {useSelector} from 'react-redux';
-import {RootState} from '../store/Store';
-import {Organization} from '../utils/Types';
+import {RootState} from '../store/store';
+import {Organization} from '../utils/types';
 import OrganizationItem from './OrganizationItem';
 import {ContainerView, EmptyText} from './StyledComponents';
+import {useReduxSelector} from '../redux/hooks';
 
 const OrganizationList = () => {
-  const organizations = useSelector(
+  const organizations = useReduxSelector(
     (state: RootState) => state.search.organizations,
   );
 
   const renderItem = ({item}: {item: Organization}) => {
-    return <OrganizationItem item={item} />;
+    return (
+      <OrganizationItem
+        url={item.url}
+        avatar_url={item.avatar_url}
+        login={item.login}
+      />
+    );
   };
 
   const keyExtractor = (item: Organization) => item.id.toString();

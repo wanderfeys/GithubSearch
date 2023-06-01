@@ -9,7 +9,7 @@ import {
 import SearchInput from '../components/SearchInput';
 import RepositoryList from '../components/RepositoryList';
 import OrganizationList from '../components/OrganizationList';
-import {colors} from '../utils/Colors';
+import {colors} from '../utils/colors';
 
 const SearchScreen = () => {
   const [index, setIndex] = useState(0);
@@ -27,7 +27,7 @@ const SearchScreen = () => {
   const renderTabBar = (props: any) => (
     <StyledTabBar
       {...props}
-      indicatorStyle={{backgroundColor: 'white'}}
+      indicatorStyle={{backgroundColor: colors.white}}
       pressOpacity={1}
       pressColor={colors.background}
     />

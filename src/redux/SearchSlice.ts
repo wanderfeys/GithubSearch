@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {Organization, Repository, SearchState} from '../utils/Types';
+import {Organization, Repository, SearchState} from '../utils/types';
 
 const initialState: SearchState = {
   searchTerm: '',
@@ -12,6 +12,7 @@ const initialState: SearchState = {
 export const searchGithub = createAsyncThunk(
   'search/searchGithub',
   async (searchTerm: string, {dispatch}) => {
+    searchTerm.trim() !== '' && dispatch(addToHistory(searchTerm));
     try {
       const repositoryResponse = await fetch(
         `https://api.github.com/search/repositories?q=${searchTerm}`,

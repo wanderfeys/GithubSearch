@@ -1,6 +1,5 @@
 import React, {memo} from 'react';
 import {View, TouchableOpacity, Linking} from 'react-native';
-import {Repository} from '../utils/Types';
 import {
   Avatar,
   StarContainer,
@@ -12,12 +11,22 @@ import {
 } from './StyledComponents';
 
 interface RepositoryItemProps {
-  item: Repository;
+  owner: {avatar_url: string};
+  url: string;
+  stargazers_count: number;
+  full_name: string;
+  description: string;
 }
 
-const RepositoryItem: React.FC<RepositoryItemProps> = ({item}) => {
+const RepositoryItem: React.FC<RepositoryItemProps> = ({
+  owner,
+  url,
+  stargazers_count,
+  full_name,
+  description,
+}) => {
   const handleRepoPress = () => {
-    Linking.openURL(item.url);
+    Linking.openURL(url);
   };
 
   const formatStargazersCount = (count: number) => {
@@ -32,19 +41,15 @@ const RepositoryItem: React.FC<RepositoryItemProps> = ({item}) => {
     <TouchableOpacity onPress={handleRepoPress}>
       <ListItem>
         <View>
-          <Avatar source={{uri: item.owner?.avatar_url}} />
+          <Avatar source={{uri: owner.avatar_url}} />
           <StarContainer>
             <StarIcon name="star-o" size={16} color="white" />
-            <StarCount>
-              {formatStargazersCount(item.stargazers_count)}
-            </StarCount>
+            <StarCount>{formatStargazersCount(stargazers_count)}</StarCount>
           </StarContainer>
         </View>
         <View>
-          <ListItemTitle numberOfLines={1}>{item.full_name}</ListItemTitle>
-          <DescriptionText numberOfLines={2}>
-            {item.description}
-          </DescriptionText>
+          <ListItemTitle numberOfLines={1}>{full_name}</ListItemTitle>
+          <DescriptionText numberOfLines={2}>{description}</DescriptionText>
         </View>
       </ListItem>
     </TouchableOpacity>

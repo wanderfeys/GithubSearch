@@ -1,22 +1,27 @@
 import React from 'react';
 import {TouchableOpacity, Linking} from 'react-native';
-import {Organization} from '../utils/Types';
 import {Avatar, ListItem, TextListItem} from './StyledComponents';
 
 interface OrganizationItemProps {
-  item: Organization;
+  login: string;
+  avatar_url: string;
+  url: string;
 }
 
-const OrganizationItem: React.FC<OrganizationItemProps> = ({item}) => {
+const OrganizationItem: React.FC<OrganizationItemProps> = ({
+  login,
+  avatar_url,
+  url,
+}) => {
   const handlePress = () => {
-    Linking.openURL(item.url);
+    Linking.openURL(url);
   };
 
   return (
     <TouchableOpacity onPress={handlePress}>
       <ListItem>
-        <Avatar source={{uri: item.avatar_url}} />
-        <TextListItem>{item.login}</TextListItem>
+        <Avatar source={{uri: avatar_url}} />
+        <TextListItem>{login}</TextListItem>
       </ListItem>
     </TouchableOpacity>
   );

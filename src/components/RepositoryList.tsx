@@ -1,18 +1,26 @@
 import React, {memo} from 'react';
 import {FlatList} from 'react-native';
 import RepositoryItem from './RepositoryItem';
-import {useSelector} from 'react-redux';
-import {RootState} from '../store/Store';
-import {Repository} from '../utils/Types';
+import {RootState} from '../store/store';
+import {Repository} from '../utils/types';
 import {ContainerView, EmptyText} from './StyledComponents';
+import {useReduxSelector} from '../redux/hooks';
 
 const RepositoryList = () => {
-  const repositories = useSelector(
+  const repositories = useReduxSelector(
     (state: RootState) => state.search.repositories,
   );
 
   const renderItem = ({item}: {item: Repository}) => {
-    return <RepositoryItem item={item} />;
+    return (
+      <RepositoryItem
+        owner={item.owner}
+        url={item.url}
+        stargazers_count={item.stargazers_count}
+        full_name={item.full_name}
+        description={item.description}
+      />
+    );
   };
 
   const keyExtractor = (item: Repository) => item.id.toString();

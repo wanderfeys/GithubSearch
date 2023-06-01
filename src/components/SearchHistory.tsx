@@ -1,6 +1,6 @@
 import React from 'react';
-import {useAppSelector} from '../redux/Hooks';
-import {RootState} from '../store/Store';
+import {useReduxSelector} from '../redux/hooks';
+import {RootState} from '../store/store';
 import {
   Container,
   EmptyText,
@@ -18,7 +18,7 @@ interface SearchHistoryProps {
   onPressItem: (searchTerm: string) => void;
 }
 const SearchHistory: React.FC<SearchHistoryProps> = ({onPressItem}) => {
-  const searchHistory = useAppSelector(
+  const searchHistory = useReduxSelector(
     (state: RootState) => state.search.searchHistory,
   );
 
