@@ -9,7 +9,7 @@ import {
 import SearchInput from '../components/SearchInput';
 import RepositoryList from '../components/RepositoryList';
 import OrganizationList from '../components/OrganizationList';
-import {colors} from '../utils/Colors';
+import {colors} from '../utils/colors';
 
 const SearchScreen = () => {
   const [index, setIndex] = useState(0);

@@ -1,11 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {setSearchTerm, searchGithub} from '../redux/SearchSlice';
-import {AppAction, AppState} from '../utils/Types';
+import {setSearchTerm, searchGithub} from '../redux/searchSlice';
+import {AppAction, AppState} from '../utils/types';
 import {Input, SearchHistoryView} from './StyledComponents';
 import {debounce} from 'lodash';
 import {ThunkDispatch} from 'redux-thunk';
-import {useReduxDispatch, useReduxSelector} from '../redux/Hooks';
-import {RootState} from '../store/Store';
+import {useReduxDispatch, useReduxSelector} from '../redux/hooks';
+import {RootState} from '../store/store';
 import SearchHistory from './SearchHistory';
 
 const SearchInput = () => {

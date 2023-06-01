@@ -1,6 +1,6 @@
 import React from 'react';
-import {useReduxSelector} from '../redux/Hooks';
-import {RootState} from '../store/Store';
+import {useReduxSelector} from '../redux/hooks';
+import {RootState} from '../store/store';
 import {
   Container,
   EmptyText,
