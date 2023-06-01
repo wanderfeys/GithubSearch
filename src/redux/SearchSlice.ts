@@ -12,7 +12,7 @@ const initialState: SearchState = {
 export const searchGithub = createAsyncThunk(
   'search/searchGithub',
   async (searchTerm: string, {dispatch}) => {
-    searchTerm.trim() !== '' && dispatch(addToHistory(searchTerm));
+    dispatch(addToHistory(searchTerm));
     try {
       const repositoryResponse = await fetch(
         `https://api.github.com/search/repositories?q=${searchTerm}`,
@@ -73,10 +73,16 @@ const searchSlice = createSlice({
     },
     addToHistory: (state, action: PayloadAction<string>) => {
       const searchTerm = action.payload;
-      if (state.searchHistory.length >= 5) {
-        state.searchHistory.pop();
+      const trimmedSearchTerm = searchTerm.trim();
+      if (
+        trimmedSearchTerm !== '' &&
+        !state.searchHistory.includes(trimmedSearchTerm)
+      ) {
+        if (state.searchHistory.length >= 5) {
+          state.searchHistory.pop();
+        }
+        state.searchHistory.unshift(searchTerm);
       }
-      state.searchHistory.unshift(searchTerm);
     },
     searchError: (state, action: PayloadAction<string>) => {
       state.error = action.payload;
