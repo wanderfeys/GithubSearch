@@ -25,10 +25,7 @@ export const useSearchAndRefresh = (searchTerm: string) => {
   const handleRefresh = useCallback(async () => {
     dispatch(setRefreshing(true));
     debouncedHandleSearch.flush();
-    await new Promise<void>(resolve => {
-      debouncedHandleSearch(searchTerm);
-      resolve();
-    });
+    debouncedHandleSearch(searchTerm);
     dispatch(setRefreshing(false));
   }, [searchTerm]);
 
