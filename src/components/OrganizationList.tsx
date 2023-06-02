@@ -1,15 +1,20 @@
-import React, {memo} from 'react';
-import {FlatList} from 'react-native';
+import React, {memo, useEffect} from 'react';
+import {FlatList, RefreshControl} from 'react-native';
 import {RootState} from '../store/store';
 import {Organization} from '../utils/types';
 import OrganizationItem from './OrganizationItem';
-import {ContainerView, EmptyText} from './StyledComponents';
-import {useReduxSelector} from '../redux/hooks';
+import {useReduxSelector, useSearchAndRefresh} from '../redux/hooks';
+import {strings} from '../utils/srtings';
+import ListEmptyComponent from './ListEmptyComponent';
 
 const OrganizationList = () => {
-  const organizations = useReduxSelector(
-    (state: RootState) => state.search.organizations,
+  const searchTerm = useReduxSelector(
+    (state: RootState) => state.search.searchTerm,
   );
+  const {organizations, refreshing, handleRefresh} =
+    useSearchAndRefresh(searchTerm);
+
+  useEffect(() => {}, [refreshing]);
 
   const renderItem = ({item}: {item: Organization}) => {
     return (
@@ -28,12 +33,18 @@ const OrganizationList = () => {
       data={organizations}
       showsVerticalScrollIndicator={false}
       keyExtractor={keyExtractor}
-      ListEmptyComponent={
-        <ContainerView>
-          <EmptyText>No organization found</EmptyText>
-        </ContainerView>
-      }
       renderItem={renderItem}
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={handleRefresh}
+          colors={['gray']}
+          tintColor="gray"
+        />
+      }
+      ListEmptyComponent={
+        <ListEmptyComponent text={strings.emptyOrganization} />
+      }
     />
   );
 };

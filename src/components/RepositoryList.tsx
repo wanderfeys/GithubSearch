@@ -1,15 +1,20 @@
-import React, {memo} from 'react';
-import {FlatList} from 'react-native';
+import React, {memo, useEffect} from 'react';
+import {FlatList, RefreshControl} from 'react-native';
 import RepositoryItem from './RepositoryItem';
 import {RootState} from '../store/store';
 import {Repository} from '../utils/types';
-import {ContainerView, EmptyText} from './StyledComponents';
-import {useReduxSelector} from '../redux/hooks';
+import {useReduxSelector, useSearchAndRefresh} from '../redux/hooks';
+import ListEmptyComponent from './ListEmptyComponent';
+import {strings} from '../utils/srtings';
 
 const RepositoryList = () => {
-  const repositories = useReduxSelector(
-    (state: RootState) => state.search.repositories,
+  const searchTerm = useReduxSelector(
+    (state: RootState) => state.search.searchTerm,
   );
+  const {repositories, refreshing, handleRefresh} =
+    useSearchAndRefresh(searchTerm);
+
+  useEffect(() => {}, [refreshing]);
 
   const renderItem = ({item}: {item: Repository}) => {
     return (
@@ -30,11 +35,15 @@ const RepositoryList = () => {
       data={repositories}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
-      ListEmptyComponent={
-        <ContainerView>
-          <EmptyText>No repositories found</EmptyText>
-        </ContainerView>
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={handleRefresh}
+          colors={['gray']}
+          tintColor="gray"
+        />
       }
+      ListEmptyComponent={<ListEmptyComponent text={strings.emptyRepository} />}
     />
   );
 };

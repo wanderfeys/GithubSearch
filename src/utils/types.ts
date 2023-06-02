@@ -15,6 +15,7 @@ export interface SearchState {
   organizations: Organization[];
   searchHistory: string[];
   error: string | null | undefined;
+  refreshing: boolean;
 }
 
 export interface Organization {

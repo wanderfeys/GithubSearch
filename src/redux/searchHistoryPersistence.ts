@@ -16,7 +16,10 @@ export const saveSearchHistory = async (searchHistory: string[]) => {
 export const loadSearchHistory = async () => {
   try {
     const searchHistoryJSON = await AsyncStorage.getItem(SEARCH_HISTORY_KEY);
-    return searchHistoryJSON ? JSON.parse(searchHistoryJSON) : [];
+    const searchHistory = searchHistoryJSON
+      ? JSON.parse(searchHistoryJSON)
+      : [];
+    return searchHistory.reverse();
   } catch (error) {
     console.log('Error loading search history:', error);
     return [];

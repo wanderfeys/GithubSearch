@@ -1,26 +1,21 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {setSearchTerm, searchGithub} from '../redux/searchSlice';
-import {AppAction, AppState} from '../utils/types';
+import React, {useState} from 'react';
+import {setSearchTerm} from '../redux/searchSlice';
 import {Input, SearchHistoryView} from './StyledComponents';
-import {debounce} from 'lodash';
-import {ThunkDispatch} from 'redux-thunk';
-import {useReduxDispatch, useReduxSelector} from '../redux/hooks';
+import {
+  useDebouncedHook,
+  useReduxDispatch,
+  useReduxSelector,
+} from '../redux/hooks';
 import {RootState} from '../store/store';
 import SearchHistory from './SearchHistory';
 
 const SearchInput = () => {
   const dispatch = useReduxDispatch();
-  const asyncDispatch: ThunkDispatch<AppState, void, AppAction> =
-    useReduxDispatch();
   const searchTerm = useReduxSelector(
     (state: RootState) => state.search.searchTerm,
   );
   const [showSearchHistory, setShowSearchHistory] = useState(false);
-  const debouncedSearchGithub = useRef(
-    debounce((text: string) => asyncDispatch(searchGithub(text)), 500),
-  ).current;
-
-  useEffect(() => {}, [dispatch, searchTerm]);
+  const debouncedSearchGithub = useDebouncedHook(searchTerm);
 
   const handleSearchInputFocus = () => {
     setShowSearchHistory(true);
@@ -32,7 +27,6 @@ const SearchInput = () => {
 
   const handleSearchTermChange = (text: string) => {
     dispatch(setSearchTerm(text));
-
     debouncedSearchGithub(text);
   };
 
