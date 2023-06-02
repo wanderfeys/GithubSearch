@@ -3,7 +3,7 @@ import {FlatList, RefreshControl} from 'react-native';
 import {RootState} from '../store/store';
 import {Organization} from '../utils/types';
 import OrganizationItem from './OrganizationItem';
-import {useReduxSelector, useSearchAndRefresh} from '../redux/hooks';
+import {useDebouncedHook, useReduxSelector} from '../redux/hooks';
 import {strings} from '../utils/srtings';
 import ListEmptyComponent from './ListEmptyComponent';
 
@@ -11,8 +11,8 @@ const OrganizationList = () => {
   const searchTerm = useReduxSelector(
     (state: RootState) => state.search.searchTerm,
   );
-  const {organizations, refreshing, handleRefresh} =
-    useSearchAndRefresh(searchTerm);
+  const {organizations, refreshing, handleSearch} =
+    useDebouncedHook(searchTerm);
 
   useEffect(() => {}, [refreshing]);
 
@@ -37,7 +37,7 @@ const OrganizationList = () => {
       refreshControl={
         <RefreshControl
           refreshing={refreshing}
-          onRefresh={handleRefresh}
+          onRefresh={() => handleSearch(searchTerm, true)}
           colors={['gray']}
           tintColor="gray"
         />

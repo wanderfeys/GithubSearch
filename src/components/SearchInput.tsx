@@ -15,7 +15,7 @@ const SearchInput = () => {
     (state: RootState) => state.search.searchTerm,
   );
   const [showSearchHistory, setShowSearchHistory] = useState(false);
-  const debouncedSearchGithub = useDebouncedHook(searchTerm);
+  const {handleSearch} = useDebouncedHook(searchTerm);
 
   const handleSearchInputFocus = () => {
     setShowSearchHistory(true);
@@ -27,7 +27,7 @@ const SearchInput = () => {
 
   const handleSearchTermChange = (text: string) => {
     dispatch(setSearchTerm(text));
-    debouncedSearchGithub(text);
+    handleSearch(text, false);
   };
 
   return (

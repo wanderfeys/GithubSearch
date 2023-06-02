@@ -9,7 +9,7 @@ import {searchGithub, setRefreshing} from './searchSlice';
 
 export const useReduxDispatch: () => AppDispatch = useDispatch;
 export const useReduxSelector: TypedUseSelectorHook<RootState> = useSelector;
-export const useSearchAndRefresh = (searchTerm: string) => {
+export const useDebouncedHook = (searchTerm: string) => {
   const organizations = useReduxSelector(
     (state: RootState) => state.search.organizations,
   );
@@ -20,43 +20,33 @@ export const useSearchAndRefresh = (searchTerm: string) => {
     (state: RootState) => state.search.refreshing,
   );
   const dispatch = useReduxDispatch();
-  const debouncedHandleSearch = useDebouncedHook(searchTerm);
-
-  const handleRefresh = useCallback(async () => {
-    dispatch(setRefreshing(true));
-    debouncedHandleSearch.flush();
-    await new Promise<void>(resolve => {
-      debouncedHandleSearch(searchTerm);
-      resolve();
-    });
-    dispatch(setRefreshing(false));
-  }, [searchTerm]);
-
-  useEffect(() => {
-    if (!refreshing) {
-      debouncedHandleSearch(searchTerm);
-    }
-  }, []);
-
-  return {repositories, organizations, refreshing, handleRefresh};
-};
-
-export const useDebouncedHook = (searchTerm: string) => {
   const asyncDispatch: ThunkDispatch<AppState, void, AppAction> =
     useReduxDispatch();
+
   const debouncedSearch = useRef(
-    debounce((text: string) => asyncDispatch(searchGithub(text)), 500),
+    debounce((text: string, refresh: boolean) => {
+      if (refresh) {
+        dispatch(setRefreshing(true));
+      }
+
+      asyncDispatch(searchGithub(text)).then(() => {
+        if (refresh) {
+          dispatch(setRefreshing(false));
+        }
+      });
+    }, 500),
   ).current;
 
   useEffect(() => {
-    debouncedSearch(searchTerm);
+    debouncedSearch(searchTerm, false);
   }, []);
 
-  useEffect(() => {
-    return () => {
-      debouncedSearch.cancel();
-    };
+  const handleSearch = useCallback((text = searchTerm, isRefresh = false) => {
+    debouncedSearch(text, isRefresh);
+    if (isRefresh) {
+      debouncedSearch(searchTerm, isRefresh);
+    }
   }, []);
 
-  return debouncedSearch;
+  return {repositories, organizations, refreshing, handleSearch};
 };
