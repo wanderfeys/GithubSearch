@@ -3,7 +3,7 @@ import {FlatList, RefreshControl} from 'react-native';
 import RepositoryItem from './RepositoryItem';
 import {RootState} from '../store/store';
 import {Repository} from '../utils/types';
-import {useDebouncedHook, useReduxSelector} from '../redux/hooks';
+import {useReduxSelector, useSearchAndRefresh} from '../redux/hooks';
 import ListEmptyComponent from './ListEmptyComponent';
 import {strings} from '../utils/srtings';
 
@@ -11,7 +11,8 @@ const RepositoryList = () => {
   const searchTerm = useReduxSelector(
     (state: RootState) => state.search.searchTerm,
   );
-  const {repositories, refreshing, handleSearch} = useDebouncedHook(searchTerm);
+  const {repositories, refreshing, handleRefresh} =
+    useSearchAndRefresh(searchTerm);
 
   useEffect(() => {}, [refreshing]);
 
@@ -37,7 +38,7 @@ const RepositoryList = () => {
       refreshControl={
         <RefreshControl
           refreshing={refreshing}
-          onRefresh={() => handleSearch(searchTerm, true)}
+          onRefresh={handleRefresh}
           colors={['gray']}
           tintColor="gray"
         />
